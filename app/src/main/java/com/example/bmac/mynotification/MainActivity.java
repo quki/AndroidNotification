@@ -29,12 +29,14 @@ public class MainActivity extends AppCompatActivity {
                 mRemoteView.setProgressBar(R.id.noti_progress, 100,50, false); // public void setProgressBar (int viewId, int max, int current, boolean 진행율표시유무)
 
                 // 상단 바 notification
-                Notification notification = new Notification(R.mipmap.default_character, "AT", System.currentTimeMillis()); //currentTimeMillis : 지금당장
-                notification.flags |= Notification.FLAG_AUTO_CANCEL;  // 알림을 터치하면 사라짐
-                //notification.contentIntent = mPendingIntent;
-                notification.contentView = mRemoteView;
-
-                mNotificationManager.notify(777, notification);
+                Notification.Builder notification = new Notification.Builder(this);
+                notification.setSmallIcon(R.mipmap.default_character);
+                notification.setTicker("AT");
+                notification.setWhen(System.currentTimeMillis());
+                notification.setContentIntent(mPendingIntent);
+                notification.setAutoCancel(true);
+                notification.setContent(mRemoteView) ;
+                mNotificationManager.notify(777, notification.build());
 
 
             }
