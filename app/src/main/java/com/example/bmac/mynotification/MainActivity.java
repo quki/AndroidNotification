@@ -16,29 +16,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE); // Notification Manager
-         PendingIntent mPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE); // Notification Manager
+        PendingIntent invokeActivity = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
+
+
+        // RemoteView 커스터마이징
+        RemoteViews mRemoteView = new RemoteViews(getPackageName(), R.layout.progressbar);
+        mRemoteView.setTextViewText(R.id.noti_title, "TEST");
+        mRemoteView.setTextViewText(R.id.noti_percentage, "100%");
+        mRemoteView.setTextViewText(R.id.noti_text_start, "14:30");
+        mRemoteView.setTextViewText(R.id.noti_text_end, "17:30");
+        mRemoteView.setProgressBar(R.id.noti_progress, 100, 50, false); // public void setProgressBar (int viewId, int max, int current, boolean 진행율표시유무)
 
 
 
-                RemoteViews mRemoteView = new RemoteViews(getPackageName(), R.layout.progressbar);
-                mRemoteView.setTextViewText(R.id.noti_title, "TEST");
-                mRemoteView.setTextViewText(R.id.noti_percentage, "100%");
-                mRemoteView.setTextViewText(R.id.noti_text_start, "14:30");
-                mRemoteView.setTextViewText(R.id.noti_text_end, "17:30");
-                mRemoteView.setProgressBar(R.id.noti_progress, 100,50, false); // public void setProgressBar (int viewId, int max, int current, boolean 진행율표시유무)
-
-                // 상단 바 notification
-                Notification.Builder notification = new Notification.Builder(this);
-                notification.setSmallIcon(R.mipmap.default_character);
-                notification.setTicker("AT");
-                notification.setWhen(System.currentTimeMillis());
-                notification.setContentIntent(mPendingIntent);
-                notification.setAutoCancel(true);
-                notification.setContent(mRemoteView) ;
-                mNotificationManager.notify(777, notification.build());
 
 
-            }
+        // Notification Builder
+        Notification.Builder notificationBuilder = new Notification.Builder(this);
+        notificationBuilder.setSmallIcon(R.mipmap.default_character);
+        notificationBuilder.setTicker("AT");
+        notificationBuilder.setWhen(System.currentTimeMillis());
+        notificationBuilder.setContentIntent(invokeActivity);
+        notificationBuilder.setAutoCancel(false);
+
+        Notification noti = notificationBuilder.build();
+        noti.flags = Notification.FLAG_NO_CLEAR;
+        noti.contentView = mRemoteView;
+
+        mNotificationManager.notify(2, noti);
+        mNotificationManager.notify(1, noti);
+
+
+    }
 
 }
