@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f7652f"
+    android:background="#55000000"
     android:id="@+id/noti_layout">
 
     <TextView
@@ -22,13 +23,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:text="percentage" />
-    <Button
-        android:id="@+id/cancel_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="percentage" />
 
     <TextView
         android:id="@+id/noti_text_start"
@@ -41,6 +35,7 @@
     <ProgressBar
         android:id="@+id/noti_progress"
         style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/custom_progressbar"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -48,7 +43,6 @@
         android:layout_centerVertical="true"
         >
     </ProgressBar>
-
 
     <TextView
         android:id="@+id/noti_text_end"
