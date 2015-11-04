@@ -7,7 +7,7 @@ import android.content.Intent;
 /**
  * Created by bmac on 2015-10-26.
  */
-public class MyBroadcast extends BroadcastReceiver {
+public class BootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {

@@ -7,16 +7,20 @@ import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MyBroadcast mBroadcast;
+    private BootReceiver mBroadcast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         // start Service
         startService(new Intent(getApplicationContext(), MyService.class));
 
-        mBroadcast = new MyBroadcast();
+
+
+        mBroadcast = new BootReceiver();
         IntentFilter pFilter = new IntentFilter(Intent.ACTION_PACKAGE_ADDED);
         pFilter.addAction(Intent.ACTION_PACKAGE_REMOVED);
         pFilter.addAction(Intent.ACTION_PACKAGE_REPLACED);
@@ -29,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+
         stopService(new Intent(getApplicationContext(), MyService.class));
 
         if (mBroadcast != null)

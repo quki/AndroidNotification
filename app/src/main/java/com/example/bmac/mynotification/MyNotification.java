@@ -24,6 +24,7 @@ public class MyNotification {
     }
 
     public void setATNotificationBuilder() {
+
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE); // Notification Manager
         PendingIntent invokeActivity = PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
         // RemoteView 커스터마이징

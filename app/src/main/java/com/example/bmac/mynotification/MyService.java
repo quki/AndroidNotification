@@ -54,8 +54,9 @@ public class MyService extends Service implements Runnable{
     public void run() {
 
         int currTime = count * UPDATE_TIME_INTERVAL/1000;
-        Toast.makeText(getApplicationContext(),currTime+"",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),currTime+"",Toast.LENGTH_SHORT).show();
         mHandler.postDelayed(this, UPDATE_TIME_INTERVAL);
         count++;
+
     }
 }
